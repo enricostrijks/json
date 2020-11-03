@@ -16,7 +16,13 @@ const boeken = {
   uitvoeren() {
     let html = "";
     this.data.forEach( boek => {
-      html += `<h3>${boek.titel}</h3>`
+      let titel = "";
+      if ( boek.voortitel ) {
+        titel += boek.voortitel + " ";
+      }
+      titel += boek.titel;
+
+      html += `<h3>${titel}</h3>`
     });
     uitvoer.innerHTML = html
   }
