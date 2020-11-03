@@ -22,7 +22,10 @@ const boeken = {
       }
       titel += boek.titel;
 
-      html += `<h3>${titel}</h3>`
+      html += `<section class="boek">`;
+      html += `<img class="boek__cover" src="${boek.cover}" alt ="${titel}">`;
+      html += `<h3>${titel}</h3>`;
+      html += `</section>`
     });
     uitvoer.innerHTML = html
   }
