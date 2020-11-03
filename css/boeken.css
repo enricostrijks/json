@@ -10,3 +10,6 @@ body {
   padding: 0 3rem 0 0;
   max-width: 300px;
 }
+.boek_paginas::after, .boek_uitgave::after, .boek_ean::after, .boek_taal::after {
+    content: " | ";
+}
