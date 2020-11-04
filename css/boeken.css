@@ -30,3 +30,13 @@ body {
     float: right;
     text-align: right;
 }
+
+@media (max-width:1250) {
+    #boeken {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .boek:nth-child(4n+2), .boek:nth-child(4n+3) {
+        background-color: #ccc;
+    }
+}
