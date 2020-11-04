@@ -17,7 +17,8 @@ xhr.send();
 const boeken = {
 
   taalFilter: ['Engels', 'Duits', 'Nederlands'],
-  es: 'auteurs',
+  es: 'titel',
+  oplopend: 1,
   filteren( gegevens ) {
     this.data = gegevens.filter( (bk) => {
       let bool = false;
@@ -28,11 +29,11 @@ const boeken = {
     } )
   },
   sorteren() {
-    if(this.es == 'titel') {this.data.sort( (a,b) => ( a.titel.toUpperCase() > b.titel.toUpperCase() ) ? 1 : -1);}
-    else if (this.es == 'paginas') {this.data.sort( (a,b) => ( a.paginas > b.paginas) ? 1 : -1);}
-    else if (this.es == 'uitgave') {this.data.sort( (a,b) => ( a.uitgave > b.uitgave) ? 1 : -1);}
-    else if (this.es == 'prijs') {this.data.sort( (a,b) => ( a.prijs > b.prijs) ? 1 : -1);}
-    else if (this.es == 'auteurs') {this.data.sort( (a,b) => ( a.auteurs[0].achternaam > b.auteurs[0].achternaam) ? 1 : -1);}
+    if(this.es == 'titel') {this.data.sort( (a,b) => ( a.titel.toUpperCase() > b.titel.toUpperCase() ) ? this.oplopend : -1*this.oplopend);}
+    else if (this.es == 'paginas') {this.data.sort( (a,b) => ( a.paginas > b.paginas) ? this.oplopend : -1*this.oplopend);}
+    else if (this.es == 'uitgave') {this.data.sort( (a,b) => ( a.uitgave > b.uitgave) ? this.oplopend : -1*this.oplopend);}
+    else if (this.es == 'prijs') {this.data.sort( (a,b) => ( a.prijs > b.prijs) ? this.oplopend : -1*this.oplopend);}
+    else if (this.es == 'auteurs') {this.data.sort( (a,b) => ( a.auteurs[0].achternaam > b.auteurs[0].achternaam) ? this.oplopend : -1*this.oplopend);}
   },
 
   uitvoeren() {
@@ -118,3 +119,8 @@ const pasSortEigAan= () => {
 taalKeuze.forEach( cb => cb.addEventListener('change', pasFilterAan) );
 
 selectSort.addEventListener('change', pasSortEigAan);
+
+document.querySelectorAll('.besturing__rb').forEach( rb => rb.addEventListener('change', () => {
+  boeken.oplopend = rb.value;
+  boeken.uitvoeren();
+}))
