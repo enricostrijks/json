@@ -5,6 +5,7 @@ xhr.onreadystatechange = () => {
   if (xhr.readyState == 4 && xhr.status == 200) {
     let result = JSON.parse(xhr.responseText);
     boeken.data = result
+    boeken.filteren( result );
     boeken.uitvoeren();
   }
 }
@@ -12,6 +13,11 @@ xhr.open("GET", "boeken.json", true);
 xhr.send();
 
 const boeken = {
+
+  taalFilter: 'Engels',
+  filteren( gegevens ) {
+    this.data = gegevens.filter( (bk) => {return bk.taal == this.taalFilter } );
+  },
 
   uitvoeren() {
     let html = "";

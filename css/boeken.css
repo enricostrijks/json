@@ -8,17 +8,20 @@ body {
 .boek__cover {
   float: left;
   padding: 0 3rem 0 0;
-  max-width: 300px;
+  max-width: 150px;
 }
-.boek_kop{
-    margin-top: 0;
-    color: royalblue;
-    font-size: 1.5em;
+.boek_kop {
+  margin-top: 0;
+  color: royalblue;
+  font-size: 1.5em;
 }
-.boek_paginas::after, .boek_uitgave::after, .boek_ean::after, .boek_taal::after {
-    content: " | ";
+.boek_paginas::after,
+.boek_uitgave::after,
+.boek_ean::after,
+.boek_taal::after {
+  content: " | ";
 }
-.boek_prijs{
-    font-size: 2em;
-    color: royalblue;
+.boek_prijs {
+  font-size: 2em;
+  color: royalblue;
 }
