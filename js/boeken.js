@@ -18,7 +18,7 @@ xhr.send();
 const ww = {
   bestelling: [],
   boekToevoegen(obj) {
-    let gevonden = this.bestelling.filter(b => b.ean == obj.ean );
+    let gevonden = this.bestelling.filter( b => b.ean == obj.ean );
     if (gevonden.length == 0) {
     ww.bestelling.push(obj);
     }
