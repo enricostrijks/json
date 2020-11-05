@@ -48,6 +48,11 @@ const ww = {
         html += `<td>${titel}</td>`;
         html += `<td>${boek.besteldAantal}</td>`;
         html += `<td>${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td>`;
+        html += `<td><img
+        src="https://cdn4.iconfinder.com/data/icons/complete-common-version-6-4/1024/trash-512.png"
+        data-role="${boek.ean}"
+        class="bestelformulier__trash"
+        /></td>`;
         html += '</tr>';
         totaal += boek.prijs * boek.besteldAantal;
         totaalBesteld += boek.besteldAantal;
@@ -56,6 +61,17 @@ const ww = {
     html += '</table>';
     document.getElementById('uitvoer').innerHTML = html;
     aantalInWinkelwagen.innerHTML = totaalBesteld;
+    this.trashActiveren();
+  },
+  trashActiveren() {
+    document.querySelectorAll('.bestelformulier__trash').forEach( trash => {
+      trash.addEventListener('click', e => {
+        let teVerwijderenBoekID = e.target.getAttribute('data-role');
+        this.bestelling = this.bestelling.filter( bk => bk.ean != teVerwijderenBoekID );
+        localStorage.wwBestelling = JSON.stringify(this.bestelling);
+        this.uitvoeren();
+      })
+    })
   }
 }
 ww.dataOphalen();

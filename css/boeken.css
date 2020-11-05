@@ -24,6 +24,9 @@ body {
   text-align: center;
   border-radius: 2em;
 }
+.bestelformulier__trash{
+  height: 3em;
+}
 #boeken {
   clear: both;
 }
