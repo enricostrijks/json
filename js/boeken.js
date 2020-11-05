@@ -18,12 +18,17 @@ xhr.send();
 const ww = {
   bestelling: [],
   boekToevoegen(obj) {
+    let gevonden = this.bestelling.filter(b => b.ean == obj.ean );
+    if (gevonden.length == 0) {
     ww.bestelling.push(obj);
+    }
     aantalInWinkelwagen.innerHTML = this.bestelling.length;
     localStorage.wwBestelling = JSON.stringify(this.bestelling);
   },
   dataOphalen() {
-    this.bestelling = JSON.parse(localStorage.wwBestelling);
+    if ( localStorage.wwBestelling ) {
+      this.bestelling = JSON.parse(localStorage.wwBestelling);
+    }
     this.uitvoeren();
   },
   uitvoeren() {
@@ -78,6 +83,9 @@ const boeken = {
 
     let html = "";
     this.data.forEach( boek => {
+
+      boek.besteldAantal = 0;
+
       let titel = "";
       if ( boek.voortitel ) {
         titel += boek.voortitel + " ";
@@ -116,6 +124,7 @@ const boeken = {
         e.preventDefault();
         let boekID = e.target.getAttribute('data-role');
         let gekliktBoek = this.data.filter( b => b.ean == boekID);
+        gekliktBoek[0].besteldAantal ++;
         ww.boekToevoegen(gekliktBoek[0]);
       })
     });
