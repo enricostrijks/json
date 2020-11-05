@@ -46,7 +46,18 @@ const ww = {
         html += '<tr>';
         html += `<td><img src="${boek.cover}" alt="${titel}" class="bestelformulier__cover"></td>`;
         html += `<td>${titel}</td>`;
-        html += `<td>${boek.besteldAantal}</td>`;
+        html += `<td class="bestelformulier__aantal">
+        <img
+        src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-arrow-down-thin.png"
+        data-role="${boek.ean}"
+        class="bestelformulier__verlaag"
+        />
+        ${boek.besteldAantal}
+        <img
+        src="https://cdns.iconmonstr.com/wp-content/assets/preview/2018/240/iconmonstr-arrow-up-thin.png"    
+        data-role="${boek.ean}"    
+        class="bestelformulier__verhoog"
+        /></td>`;
         html += `<td>${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td>`;
         html += `<td><img
         src="https://cdn4.iconfinder.com/data/icons/complete-common-version-6-4/1024/trash-512.png"

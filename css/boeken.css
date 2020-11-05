@@ -24,8 +24,17 @@ body {
   text-align: center;
   border-radius: 2em;
 }
-.bestelformulier__trash{
-  height: 3em;
+
+.bestelformulier__trash, 
+.bestelformulier__verhoog, 
+.bestelformulier__verlaag {
+  height: 2em;
+  padding: 0 1em;
+}
+.bestelformulier__trash:hover, 
+.bestelformulier__verhoog:hover, 
+.bestelformulier__verlaag:hover {
+  cursor: pointer;
 }
 #boeken {
   clear: both;
@@ -92,7 +101,7 @@ body {
 }
 
 #haalFormulier {
-  display: none;
+  opacity: 0;
 }
 #haalFormulier:checked ~ .bestelformulier {
   transform: translateX(0vw);
