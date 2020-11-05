@@ -63,14 +63,16 @@ const boeken = {
 
       html += `<section class="boek">`;
       html += `<img class="boek__cover" src="${boek.cover}" alt ="${titel}">`;
+      html += `<div class="boek__info">`;
       html += `<h3 class="boek_kop">${titel}</h3>`;
       html += `<p class="boek_auteurs">${auteurs}</p>`;
       html += `<span class="boek_uitgave">${this.datumOmzetten(boek.uitgave)}</span>`;
       html += `<span class="boek_ean">EAN: ${boek.ean}</span>`;
       html += `<span class="boek_paginas">${boek.paginas} pagina's</span>`;
       html += `<span class="boek_taal">${boek.taal}</span>`;
-      html += `<div class="boek_prijs">${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</div>`;
-      html += `</section>`
+      html += `<div class="boek_prijs">${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}
+              <a href="#" class="boek__bestel-knop">bestellen</a></div>`;
+      html += `</div></section>`
     });
     uitvoer.innerHTML = html
   },

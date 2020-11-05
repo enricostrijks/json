@@ -4,27 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Onze boeken</title>
-    <link rel="stylesheet" href="css/boeken.css">
+    <link rel="stylesheet" type="text/css" href="css/boeken.css" />
   </head>
   <body>
+    <div class="ww">
+      <img
+        src="data:image/png;base64,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"
+        alt="winkelwagen"
+        class="ww__icon"
+      />
+      <span class="ww__aantal">0</span>
+    </div>
     <h1>Kies uit de volgende boeken</h1>
 
     <div class="besturing">
       <label class="besturing__cb-label">
-        <input type="checkbox" class="besturing__cb-taal" value="Nederlands" checked>
+        <input
+          type="checkbox"
+          class="besturing__cb-taal"
+          value="Nederlands"
+          checked
+        />
         Nederlands
       </label>
       <label class="besturing__cb-label">
-        <input type="checkbox" class="besturing__cb-taal" value="Engels" checked>
+        <input
+          type="checkbox"
+          class="besturing__cb-taal"
+          value="Engels"
+          checked
+        />
         Engels
       </label>
       <label class="besturing__cb-label">
-        <input type="checkbox" class="besturing__cb-taal" value="Duits" checked>
+        <input
+          type="checkbox"
+          class="besturing__cb-taal"
+          value="Duits"
+          checked
+        />
         Duits
       </label>
-      
+
       <span class="besturing__sorteren">
-        <label class="besturing__select--label">Sorteren op:
+        <label class="besturing__select--label"
+          >Sorteren op:
           <select class="besturing__select">
             <option value="titel">Titel</option>
             <option value="auteurs">Auteur</option>
@@ -33,8 +57,23 @@
             <option value="prijs">Prijs</option>
           </select>
         </label>
-        <label><input type="radio" name="opaf" class="besturing__rb" checked value="1">Oplopend</label>
-        <label><input type="radio" name="opaf" class="besturing__rb" value="-1">Aflopend</label>
+        <label
+          ><input
+            type="radio"
+            name="opaf"
+            class="besturing__rb"
+            checked
+            value="1"
+          />Oplopend</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="opaf"
+            class="besturing__rb"
+            value="-1"
+          />Aflopend</label
+        >
       </span>
     </div>
 
