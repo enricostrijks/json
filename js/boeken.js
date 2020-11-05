@@ -20,9 +20,11 @@ const ww = {
   boekToevoegen(obj) {
     let gevonden = this.bestelling.filter( b => b.ean == obj.ean );
     if (gevonden.length == 0) {
-    ww.bestelling.push(obj);
+      obj.besteldAantal ++;
+      ww.bestelling.push(obj);
+    } else {
+    gevonden[0].besteldAantal ++;
     }
-    aantalInWinkelwagen.innerHTML = this.bestelling.length;
     localStorage.wwBestelling = JSON.stringify(this.bestelling);
   },
   dataOphalen() {
@@ -34,6 +36,7 @@ const ww = {
   uitvoeren() {
     let html = '<table>';
     let totaal = 0;
+    let totaalBesteld = 0;
       this.bestelling.forEach( boek => {
         let titel = "";
         if ( boek.voortitel ) {
@@ -43,14 +46,16 @@ const ww = {
         html += '<tr>';
         html += `<td><img src="${boek.cover}" alt="${titel}" class="bestelformulier__cover"></td>`;
         html += `<td>${titel}</td>`;
+        html += `<td>${boek.besteldAantal}</td>`;
         html += `<td>${boek.prijs.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td>`;
         html += '</tr>';
-        totaal += boek.prijs;
+        totaal += boek.prijs * boek.besteldAantal;
+        totaalBesteld += boek.besteldAantal;
       })
-    html += `<tr><td colspan="2">Totaal</td><td>${totaal.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td></tr>`;
+    html += `<tr><td colspan="3">Totaal</td><td>${totaal.toLocaleString('nl-NL', {currency: 'EUR', style: 'currency'})}</td></tr>`;
     html += '</table>';
     document.getElementById('uitvoer').innerHTML = html;
-    aantalInWinkelwagen.innerHTML = ww.bestelling.length;
+    aantalInWinkelwagen.innerHTML = totaalBesteld;
   }
 }
 ww.dataOphalen();
@@ -124,7 +129,6 @@ const boeken = {
         e.preventDefault();
         let boekID = e.target.getAttribute('data-role');
         let gekliktBoek = this.data.filter( b => b.ean == boekID);
-        gekliktBoek[0].besteldAantal ++;
         ww.boekToevoegen(gekliktBoek[0]);
       })
     });
