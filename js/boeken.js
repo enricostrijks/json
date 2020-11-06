@@ -26,6 +26,7 @@ const ww = {
     gevonden[0].besteldAantal ++;
     }
     localStorage.wwBestelling = JSON.stringify(this.bestelling);
+    this.uitvoeren();
   },
   dataOphalen() {
     if ( localStorage.wwBestelling ) {
